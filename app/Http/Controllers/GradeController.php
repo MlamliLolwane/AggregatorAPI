@@ -20,6 +20,13 @@ class GradeController extends Controller
         return response($response);
     }
 
+    public function distinctGrades()
+    {
+        $response = Http::gradesapi()->get('grade/distinct');
+
+        return response($response);
+    }
+
     public function index()
     {
         $response = Http::gradesapi()->get('grade/index');

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Aggregates\CreateLearnerController;
+use App\Http\Controllers\Aggregates\CreateNewsletter;
 use App\Http\Controllers\Aggregates\GetNewsletters;
 use App\Http\Controllers\Aggregates\LearnerDetailedInformation;
 use App\Http\Controllers\Aggregates\UsageStatistics;
@@ -46,6 +47,7 @@ Route::delete('/contacts/destroy/{id}', [ContactController::class, 'destroy']);
 */
 Route::get('/grades/get', [GradeController::class, 'all_grades']);
 Route::get('/grades/index', [GradeController::class, 'index']);
+Route::get('/grades/distinct', [GradeController::class, 'distinctGrades']);
 Route::get('/grades/show/{id}', [GradeController::class, 'show']);
 Route::post('/grades/store', [GradeController::class, 'store']);
 Route::patch('/grades/update/{contact_id}', [GradeController::class, 'update']);
@@ -107,5 +109,8 @@ Route::get('/query/dashboard', [UsageStatistics::class, 'get_usage_statisctics']
 
 //POST Create Learner
 Route::post('/aggregates/learner/store', [CreateLearnerController::class, 'create_learner']);
+
+//Create and send Newsletters
+Route::get('/aggregates/newsletters/send', [CreateNewsletter::class, 'createAndSendNewsletter']);
 
 
