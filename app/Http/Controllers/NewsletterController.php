@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\NewsletterJob;
+use App\Mail\SendNewsletter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Notification;
 
 class NewsletterController extends Controller
 {
@@ -27,8 +30,19 @@ class NewsletterController extends Controller
      */
     public function store(Request $request)
     {
-        $response = Http::newslettersapi()->post('store', $request->all());
+        $newsletter = [
+            'grade_ids' => json_encode($request->grades),
+            'title' => $request->title,
+            'body' => $request->body
+        ];
 
+        //Save the newsletter to the database
+        $response = Http::newslettersapi()->post('store', $newsletter);
+        
+        //Dispatch the newsletters job
+        dispatch(new NewsletterJob(json_encode($request->grades), $newsletter));
+
+        //Return a response to the users
         return response($response);
     }
 

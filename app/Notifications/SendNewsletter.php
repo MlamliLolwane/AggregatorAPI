@@ -11,12 +11,16 @@ class SendNewsletter extends Notification
 {
     use Queueable;
 
+    protected $newsletter;
+    protected $contacts;
+
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct($newsletter, $contacts)
     {
-        //
+        $this->newsletter = $newsletter;
+        $this->contacts = $contacts;
     }
 
     /**
@@ -34,11 +38,8 @@ class SendNewsletter extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        return (new MailMessage)
-                    ->from('mrlolwane96@gmail.com')
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        return (new MailMessage)->from('golviewhigh@webmail.com', 'Golfview High School')
+        ->markdown('mail.send_newsletter', ['newsletter' => $this->newsletter]);
     }
 
     /**

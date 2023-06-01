@@ -20,6 +20,7 @@ class GradeController extends Controller
         return response($response);
     }
 
+    //Fetch distinct grades
     public function distinctGrades()
     {
         $response = Http::gradesapi()->get('grade/distinct');
