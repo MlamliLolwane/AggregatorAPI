@@ -15,7 +15,6 @@ class SchoolController extends Controller
     public function index()
     {
         $response = Http::schoolsapi()->get('index');
-
         return response($response);
     }
 

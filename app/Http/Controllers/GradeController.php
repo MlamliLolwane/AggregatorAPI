@@ -28,6 +28,13 @@ class GradeController extends Controller
         return response($response);
     }
 
+    public function distinctGradesTwo()
+    {
+        $response = Http::gradesapi()->get('grade/distinct/noid');
+
+        return response($response);
+    }
+
     public function index()
     {
         $response = Http::gradesapi()->get('grade/index');

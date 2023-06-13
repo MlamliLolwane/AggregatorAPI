@@ -34,6 +34,7 @@ class GetNewsletters extends Controller
                 }
             }
             array_push($aggregated_newsletter, (object) [
+                'id' => $newsletter['id'],
                 'title' => $newsletter['title'],
                 'created_at' => $newsletter['created_at'],
                 'grades' => implode(",", $grades)

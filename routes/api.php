@@ -48,6 +48,7 @@ Route::delete('/contacts/destroy/{id}', [ContactController::class, 'destroy']);
 Route::get('/grades/get', [GradeController::class, 'all_grades']);
 Route::get('/grades/index', [GradeController::class, 'index']);
 Route::get('/grades/distinct', [GradeController::class, 'distinctGrades']);
+Route::get('/grades/distinct/noid', [GradeController::class, 'distinctGradesTwo']);
 Route::get('/grades/show/{id}', [GradeController::class, 'show']);
 Route::post('/grades/store', [GradeController::class, 'store']);
 Route::patch('/grades/update/{contact_id}', [GradeController::class, 'update']);
@@ -103,6 +104,9 @@ Route::get('/query/get_last_learner_information', [LearnerDetailedInformation::c
 
 //GET Newsletters
 Route::get('/newsletters/get-newsletters', [GetNewsletters::class, 'get_newsletters']);
+
+//POST Whatsapp Newsletter
+Route::post('/aggregates/newsletters/whatsapp', [CreateNewsletter::class, 'sendWhatsappNewsletter']);
 
 //GET Dashboard
 Route::get('/query/dashboard', [UsageStatistics::class, 'get_usage_statisctics']);
